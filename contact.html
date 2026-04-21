@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontak Kami - WisataGo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #f97316;
+            --primary-hover: #ea580c;
+            --dark-bg: #111827;
+            --light-bg: #f9fafb;
+            --text-dark: #1f2937;
+            --text-muted: #6b7280;
+        }
+
+        html, body { max-width: 100%; overflow-x: hidden; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: var(--light-bg); color: var(--text-dark); }
+
+        /* Floating Navbar */
+        .navbar-floating { position: fixed !important; top: 20px; left: 0; right: 0; margin: 0 auto; width: 95%; max-width: 1200px; background-color: rgba(40, 40, 40, 0.95); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 50px; z-index: 1030; padding: 8px 20px; }
+        .navbar-floating .navbar-brand { font-weight: 700; color: white !important; display: flex; align-items: center; }
+        .navbar-floating .navbar-brand .logo-icon { background: white; color: var(--text-dark); width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1rem; margin-right: 12px; }
+        .navbar-floating .nav-link { color: #d1d5db !important; font-weight: 500; font-size: 0.95rem; margin: 0 5px; }
+        .navbar-floating .nav-link:hover { color: white !important; }
+        .navbar-floating .btn-primary { background-color: #fb923c; color: white; border: none; border-radius: 50px; padding: 10px 24px; font-weight: 600; }
+        .navbar-floating .btn-primary:hover { background-color: #f97316; }
+        .navbar-floating .btn-lang { color: #d1d5db; border: 1px solid rgba(255,255,255,0.2); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 15px; text-decoration: none; transition: 0.3s; }
+        .navbar-floating .btn-lang:hover { color: white; background: rgba(255, 255, 255, 0.1); }
+
+        @media (max-width: 991px) { .navbar-floating { top: 10px; padding: 10px; width: 98%; } }
+
+        /* Creative Header for Contact */
+        .page-header { background: linear-gradient(135deg, var(--dark-bg) 0%, #1e3a8a 100%); padding: 220px 0 150px 0; color: white; text-align: center; position: relative; overflow: hidden; }
+        .page-title { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; margin-bottom: 20px; position: relative; z-index: 2; }
+        
+        /* Floating background elements */
+        .circle-bg { position: absolute; width: 300px; height: 300px; border-radius: 50%; background: radial-gradient(circle, rgba(249,115,22,0.4) 0%, rgba(255,255,255,0) 70%); top: -50px; right: 10%; z-index: 1; animation: float 6s ease-in-out infinite; }
+        .circle-bg-2 { position: absolute; width: 400px; height: 400px; border-radius: 50%; background: radial-gradient(circle, rgba(59,130,246,0.3) 0%, rgba(255,255,255,0) 70%); bottom: -100px; left: 5%; z-index: 1; animation: float 8s ease-in-out infinite reverse; }
+        
+        @keyframes float {
+            0% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(30px) scale(1.05); }
+            100% { transform: translateY(0px) scale(1); }
+        }
+
+        /* Quick Support Cards */
+        .quick-contact-container { margin-top: -80px; position: relative; z-index: 10; margin-bottom: 100px; }
+        .qc-card { background: white; padding: 40px 30px; border-radius: 20px; text-align: center; border: 1px solid #f3f4f6; box-shadow: 0 20px 40px rgba(0,0,0,0.08); transition: 0.4s; height: 100%; display: flex; flex-direction: column; justify-content: center; }
+        .qc-card:hover { transform: translateY(-15px); box-shadow: 0 30px 60px rgba(249, 115, 22, 0.15); border-color: var(--primary-color); }
+        .qc-icon { width: 80px; height: 80px; border-radius: 50%; background: rgba(249, 115, 22, 0.1); color: var(--primary-color); display: flex; align-items: center; justify-content: center; font-size: 2rem; margin: 0 auto 25px; transition: 0.4s; }
+        .qc-card:hover .qc-icon { background: var(--primary-color); color: white; transform: rotateY(360deg); }
+
+        /* Map Section */
+        .map-section { padding: 80px 0; background: white; }
+        .map-container { border-radius: 30px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.1); border: 8px solid white; height: 450px; background: #e5e7eb; }
+        iframe { width: 100%; height: 100%; border: 0; }
+
+        /* FAQ Section */
+        .faq-section { padding: 100px 0; background: var(--light-bg); }
+        .accordion-item { border: none; border-radius: 15px !important; margin-bottom: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.03); overflow: hidden; }
+        .accordion-button { padding: 20px 25px; font-weight: 600; background: white; color: var(--text-dark); font-size: 1.1rem; }
+        .accordion-button:not(.collapsed) { background: var(--primary-color); color: white; box-shadow: none; }
+        .accordion-button::after { filter: invert(0.5); }
+        .accordion-button:not(.collapsed)::after { filter: invert(1) brightness(200%); }
+        .accordion-body { padding: 25px; background: white; color: var(--text-muted); line-height: 1.8; }
+
+        /* Existing Footer Components */
+        .contact-section { padding: 100px 0; background: white; border-top: 1px solid #e5e7eb; }
+        .contact-form { background: white; padding: 40px; border-radius: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid #f3f4f6; }
+        .form-control { border-radius: 10px; padding: 12px 15px; border: 1px solid #e5e7eb; }
+        .form-control:focus { box-shadow: none; border-color: var(--primary-color); }
+        .footer-card { background: white; border-radius: 20px; padding: 20px; margin-bottom: 20px; border: 1px solid #e5e7eb; box-shadow: 0 5px 15px rgba(0,0,0,0.03); }
+        .social-card { background: var(--primary-color); color: white; border-radius: 20px; padding: 20px; display: flex; justify-content: space-between; align-items: center; font-weight: 600; text-decoration: none; margin-bottom: 15px; }
+        .section-label { display: inline-block; padding: 5px 15px; border: 1px solid #e5e7eb; border-radius: 50px; font-size: 0.85rem; font-weight: 600; color: var(--text-muted); margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR COPY -->
+    <nav class="navbar navbar-expand-lg navbar-floating navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">
+                <div class="logo-icon"><i class="fa-solid fa-plane-departure"></i></div> WisataGo
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="services.html">Layanan</a></li>
+                    <li class="nav-item"><a class="nav-link" href="testimonials.html">Testimoni</a></li>
+                    <li class="nav-item"><a class="nav-link" href="blog.html" >Blog</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">Tentang Kami</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html" style="color: var(--primary-color) !important;">Kontak</a></li>
+                </ul>
+            </div>
+            <div class="d-none d-lg-flex align-items-center">
+                <a href="#" class="btn-lang"><i class="fa-solid fa-globe"></i></a>
+                <a href="https://wa.me/6281234567890" target="_blank" class="btn btn-primary">Konsultasi Gratis</a>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- CREATIVE HEADER -->
+    <header class="page-header">
+        <div class="circle-bg"></div>
+        <div class="circle-bg-2"></div>
+        <div class="container" style="position: relative; z-index: 2;">
+            <span class="badge text-dark bg-white rounded-pill px-4 py-2 mb-3 fw-bold fs-6 shadow-sm">Bantuan 24/7</span>
+            <h1 class="page-title">Butuh Panduan Liburan? <br>Mari Diskusi!</h1>
+            <p class="text-white fade-50 mx-auto fs-5" style="opacity: 0.9; max-width: 650px;">Tim ahli kami siap merespons pertanyaan Anda kapanpun. Jangan biarkan keraguan menghalangi rencana liburan impian Anda.</p>
+        </div>
+    </header>
+
+    <!-- QUICK SUPPORT CARDS -->
+    <div class="container quick-contact-container">
+        <div class="row justify-content-center g-4">
+            <div class="col-md-4">
+                <a href="https://wa.me/6281234567890" class="text-decoration-none text-dark">
+                    <div class="qc-card">
+                        <div class="qc-icon"><i class="fa-brands fa-whatsapp"></i></div>
+                        <h4 class="fw-bold">WhatsApp Langsung</h4>
+                        <p class="text-muted mb-0">Respon dalam 5 menit. Konsultasi tercepat via pesan teks.</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a href="mailto:halo@wisatago.id" class="text-decoration-none text-dark">
+                    <div class="qc-card">
+                        <div class="qc-icon"><i class="fa-regular fa-envelope"></i></div>
+                        <h4 class="fw-bold">Kirim Email</h4>
+                        <p class="text-muted mb-0">Untuk negosiasi trip korporat, B2B, atau permintaan proposal.</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a href="#" class="text-decoration-none text-dark">
+                    <div class="qc-card">
+                        <div class="qc-icon"><i class="fa-solid fa-headset"></i></div>
+                        <h4 class="fw-bold">Layanan Telepon</h4>
+                        <p class="text-muted mb-0">Jam Operasional 08:00 - 20:00 WIB. Panggilan gratis.</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- FAQ SECTION -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-5">
+                    <span class="section-label bg-white">• Tanya Jawab</span>
+                    <h2 class="fw-bold fs-1 mb-4">Pertanyaan Seputar <br>Pemesanan</h2>
+                    <p class="text-muted fs-5 mb-4">Sebelum menghubungi kami, mungkin pertanyaan Anda sudah pernah dijawab oleh tim kami di bawah ini.</p>
+                    <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Customer Service" class="img-fluid rounded-4 shadow-lg object-fit-cover" style="height: 250px; width: 100%;">
+                </div>
+                <div class="col-lg-7">
+                    <div class="accordion" id="faqAccordion">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                                    Bagaimana cara membatalkan pemesanan?
+                                </button>
+                            </h2>
+                            <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Anda dapat membatalkan pemesanan maksimal H-7 sebelum keberangkatan dengan refund 70% (tergantung kebijakan tiket maskapai). Silakan hubungi admin WhatsApp untuk proses pembatalan.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                                    Apakah Visa sudah diuruskan oleh Travel?
+                                </button>
+                            </h2>
+                            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Ya, untuk setiap pembelian paket Tour Internasional, pengurusan administrasi Visa sudah dibantu sepenuhnya oleh tim legal kami. Anda hanya perlu menyerahkan dokumen asli yang dibutuhkan.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                                    Bisa custom tujuan di luar paket yang ada?
+                                </button>
+                            </h2>
+                            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Sangat bisa! Layanan Private Tour kami memungkinkan Anda untuk mendesain rute (itinerary) sebebas mungkin sesuai budget dan referensi destinasi impian kelompok/keluarga Anda.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAP SECTION -->
+    <section class="map-section">
+        <div class="container text-center mb-5">
+            <h2 class="fw-bold fs-1">Kunjungi Kantor Kami</h2>
+            <p class="text-muted">Ayo mampir untuk konsultasi sambil ngopi gratis di lounge kami!</p>
+        </div>
+        <div class="container">
+            <div class="map-container">
+                <!-- Using Jakarta Monas coords for creative embed placeholder -->
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126930.55995775084!2d106.74413125219904!3d-6.19172421714488!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f41b272be55d%3A0xc3b841f48627b409!2sJakarta%2C%20Daerah%20Khusus%20Ibukota%20Jakarta!5e0!3m2!1sid!2sid!4v1713580000000!5m2!1sid!2sid" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- FORM AND FOOTER SECTION -->
+    <section class="contact-section border-0">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-5">
+                    <span class="section-label bg-light">• Formulir Pemesanan</span>
+                    <h2 class="fw-bold fs-1 mb-4">Mulai Rencanakan <span>Liburanmu!</span></h2>
+                    <p class="text-muted mb-5">Kirimkan request Anda dan representatif kami akan menyusunkan penawaran eksklusif tanpa kewajiban komitmen di awal.</p>
+                    
+                    <div class="footer-card">
+                        <h6 class="fw-bold text-muted" style="font-size: 0.8rem;">KANTOR PUSAT</h6>
+                        <p class="fw-bold mb-1">Jl. Merdeka No. 10, Jakarta Pusat</p>
+                    </div>
+                    <div class="footer-card">
+                        <h6 class="fw-bold text-muted" style="font-size: 0.8rem;">KANTOR CABANG (MALANG)</h6>
+                        <p class="fw-bold mb-1">Jl. Ijen No. 45, Kota Malang</p>
+                    </div>
+
+                    <div class="mt-4">
+                        <a href="https://wa.me/6281234567890" class="social-card bg-success text-decoration-none">
+                            <span><i class="fa-brands fa-whatsapp me-2 fs-5"></i> Chat via WhatsApp</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square fa-xs"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-lg-7">
+                    <div class="contact-form mb-4 border shadow-sm">
+                        <h4 class="fw-bold mb-4">Request Proposal Itinerary</h4>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold">Nama Lengkap</label>
+                                <input type="text" class="form-control" placeholder="Masukkan nama Anda">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold">Email Aktif</label>
+                                <input type="email" class="form-control" placeholder="Masukkan email Anda">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold">Nomor Telepon/WA</label>
+                                <input type="text" class="form-control" placeholder="08xx...">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold">Keperluan Liburan</label>
+                                <select class="form-select form-control">
+                                    <option>Pilih Tujuan</option>
+                                    <option>Company Gathering</option>
+                                    <option>Family Trip</option>
+                                    <option>Honeymoon Berdua</option>
+                                </select>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label fw-semibold">Detail (Lokasi & Jumlah Peserta)</label>
+                                <textarea class="form-control" rows="5" placeholder="Cth: Halo, saya butuh paket ke Tokyo untuk 4 orang bulan Desember..."></textarea>
+                            </div>
+                            <div class="col-12 mt-4">
+                                <button type="button" class="btn btn-dark w-100 py-3 rounded-pill fw-bold" onclick="alert('Proposal request berhasil dikirim! Tim kami akan meninjau dan membalas dalam 1x24 jam kerja.')">Kirim Permintaan <i class="fa-solid fa-paper-plane ms-2"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-5 pt-4 text-muted border-top border-2 border-light">
+                <p>&copy; 2026 WisataGo Travel. Hak Cipta Dilindungi.</p>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

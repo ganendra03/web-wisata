@@ -67,23 +67,11 @@
         .hero-subtitle { color: #9ca3af; font-size: 1.1rem; max-width: 600px; margin: 0 auto 40px auto; }
         
         /* Floating Badges */
-        .floating-badge {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 10px 20px;
-            border-radius: 50px;
-            position: absolute;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 0.9rem;
-            color: white;
-            z-index: 10;
-        }
+        .floating-badge { display: none; }
         .badge-icon { background: var(--primary-color); width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
         
-        .hero-image-container { position: relative; max-width: 600px; margin: 50px auto 0; }
+        /* Hero Image Container */
+        .hero-image-container { position: relative; max-width: 900px; margin: 50px auto 0; }
         .hero-image-container img { width: 100%; border-radius: 30px; box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
 
         /* Partners */
@@ -92,26 +80,28 @@
         .partner-logo:hover { filter: grayscale(0%); opacity: 1; }
 
         /* Section Label */
-        .section-label {
-            display: inline-block; padding: 5px 15px; border: 1px solid #e5e7eb; border-radius: 50px; font-size: 0.85rem; font-weight: 600; color: var(--text-muted); margin-bottom: 20px;
-        }
+        .section-label { display: inline-block; padding: 5px 15px; border: 1px solid #e5e7eb; border-radius: 50px; font-size: 0.85rem; font-weight: 600; color: var(--text-muted); margin-bottom: 20px; }
 
         /* Stats & About */
         .about-section { padding: 100px 0; background: white; }
-        .stat-card {
-            padding: 30px; border-radius: 20px; text-align: left; height: 100%; display: flex; flex-direction: column; justify-content: center;
-        }
+        .stat-card { padding: 30px; border-radius: 20px; text-align: left; height: 100%; display: flex; flex-direction: column; justify-content: center; }
         .stat-card.bg-orange { background-color: var(--primary-color); color: white; }
         .stat-card.bg-light-gray { background-color: #f3f4f6; color: var(--text-dark); }
         .stat-number { font-size: 2.5rem; font-weight: 800; margin-bottom: 10px; }
 
-        /* Services */
+        /* Services Custom Styling */
         .services-section { padding: 100px 0; background: var(--light-bg); }
-        .service-item { padding: 20px 0; border-bottom: 1px solid #e5e7eb; display: flex; justify-content: space-between; align-items: center; cursor: pointer; transition: 0.3s; }
-        .service-item:hover { color: var(--primary-color); }
-        .service-item h4 { margin: 0; font-size: 1.2rem; font-weight: 600; }
         .feature-icon-box { text-align: center; }
         .feature-icon-box .icon { width: 70px; height: 70px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin: 0 auto 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); color: var(--primary-color); }
+        
+        /* Accordion Custom Styling */
+        .service-accordion .accordion-item { border: none; border-bottom: 1px solid #e5e7eb; background: transparent; }
+        .service-accordion .accordion-button { background: transparent; padding: 20px 0; font-size: 1.2rem; font-weight: 600; color: var(--text-dark); box-shadow: none; transition: 0.3s; }
+        .service-accordion .accordion-button:not(.collapsed) { color: var(--primary-color); background: transparent; }
+        .service-accordion .accordion-button:hover { color: var(--primary-color); }
+        .service-accordion .accordion-button::after { content: '\f061'; font-family: "Font Awesome 6 Free"; font-weight: 900; background-image: none; display: flex; align-items: center; justify-content: center; color: var(--text-muted); transition: 0.3s; }
+        .service-accordion .accordion-button:not(.collapsed)::after { transform: rotate(90deg); color: var(--primary-color); }
+        .service-accordion .accordion-body { padding: 0 0 20px 0; color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; }
 
         /* Packages */
         .packages-section { padding: 100px 0; background: white; }
@@ -125,13 +115,11 @@
         .contact-form { background: white; padding: 40px; border-radius: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
         .form-control { border-radius: 10px; padding: 12px 15px; border: 1px solid #e5e7eb; }
         .form-control:focus { box-shadow: none; border-color: var(--primary-color); }
-        
         .footer-card { background: white; border-radius: 20px; padding: 20px; margin-bottom: 20px; border: 1px solid #e5e7eb; }
         .social-card { background: var(--primary-color); color: white; border-radius: 20px; padding: 20px; display: flex; justify-content: space-between; align-items: center; font-weight: 600; text-decoration: none; margin-bottom: 15px; }
 
         /* Responsive Adjustments */
         @media (max-width: 991px) {
-            .floating-badge { display: none; } /* Hide floating badges on mobile for cleaner look */
             .hero-title { font-size: 2.5rem; }
             .hero-section { padding-top: 120px; }
         }
@@ -171,33 +159,36 @@
             <p class="hero-subtitle">Nikmati kenyamanan, kejelasan, dan panduan lengkap di setiap langkah perjalanan wisata Anda bersama kami.</p>
             <a href="#" class="btn btn-light rounded-pill px-4 py-2 fw-bold text-dark me-2">Lihat Paket <i class="fa-solid fa-arrow-right ms-2"></i></a>
             
-            <div class="hero-image-container">
-                <div class="floating-badge" style="top: 20%; left: -10%;">
-                    <div class="badge-icon"><i class="fa-solid fa-headset"></i></div> Bantuan 24/7
-                </div>
-                <div class="floating-badge" style="top: 20%; right: -15%;">
-                    <div class="badge-icon"><i class="fa-solid fa-star"></i></div> Fasilitas Terbaik
-                </div>
-                <div class="floating-badge" style="bottom: 10%; left: -5%;">
-                    <div class="badge-icon"><i class="fa-solid fa-certificate"></i></div> Biro Terpercaya
-                </div>
-                <div class="floating-badge" style="bottom: 10%; right: -5%;">
-                    <div class="badge-icon"><i class="fa-solid fa-shield-halved"></i></div> Pembayaran Aman
-                </div>
-                
+            <div class="hero-image-container mb-4">
                 <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Travel Landscape">
             </div>
+            
+            <div class="d-flex justify-content-center flex-wrap gap-3 mt-4">
+                <div class="d-flex align-items-center gap-2 border border-secondary rounded-pill px-3 py-2 text-white" style="background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px);">
+                    <div class="badge-icon"><i class="fa-solid fa-headset"></i></div> Bantuan 24/7
+                </div>
+                <div class="d-flex align-items-center gap-2 border border-secondary rounded-pill px-3 py-2 text-white" style="background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px);">
+                    <div class="badge-icon"><i class="fa-solid fa-star"></i></div> Fasilitas Terbaik
+                </div>
+                <div class="d-flex align-items-center gap-2 border border-secondary rounded-pill px-3 py-2 text-white" style="background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px);">
+                    <div class="badge-icon"><i class="fa-solid fa-certificate"></i></div> Biro Terpercaya
+                </div>
+                <div class="d-flex align-items-center gap-2 border border-secondary rounded-pill px-3 py-2 text-white" style="background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px);">
+                    <div class="badge-icon"><i class="fa-solid fa-shield-halved"></i></div> Pembayaran Aman
+                </div>
+            </div>
+            
         </div>
     </section>
 
     <section class="partners-section">
         <div class="container">
             <div class="d-flex justify-content-between align-items-center flex-wrap gap-4 px-lg-5">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Garuda_Indonesia_logo.svg/1024px-Garuda_Indonesia_logo.svg.png" alt="Partner" class="partner-logo" style="height: 30px;">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Emirates_logo.svg/1024px-Emirates_logo.svg.png" alt="Partner" class="partner-logo" style="height: 40px;">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Airbnb_Logo_B%C3%A9lo.svg/2560px-Airbnb_Logo_B%C3%A9lo.svg.png" alt="Partner" class="partner-logo" style="height: 30px;">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Agoda_logo.svg/2560px-Agoda_logo.svg.png" alt="Partner" class="partner-logo" style="height: 30px;">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Stripe_Logo%2C_revised_2016.svg/2560px-Stripe_Logo%2C_revised_2016.svg.png" alt="Partner" class="partner-logo" style="height: 30px;">
+                <img src="asset/Halliburton_logo.png" alt="Partner" class="partner-logo" style="height: 30px;">
+                <img src="asset/Msc Logo.png" alt="Partner" class="partner-logo" style="height: 40px;">
+                <img src="asset/pama.webp" alt="Partner" class="partner-logo" style="height: 30px;">
+                <img src="asset/Petronas_logo.png" alt="Partner" class="partner-logo" style="height: 30px;">
+                <img src="asset/petrosea.jfif" alt="Partner" class="partner-logo" style="height: 30px;">
             </div>
         </div>
     </section>
@@ -206,7 +197,7 @@
         <div class="container">
             <div class="text-center mb-5">
                 <span class="section-label">• Tentang Kami</span>
-                <h2 class="fw-bold fs-1" style="max-width: 800px; margin: 0 auto;">Jadikan perjalanan Anda <strong>mudah dan berkesan.</strong> Dari tiket pesawat hingga hotel, kami <strong>mengurus semuanya</strong> agar Anda bisa fokus <strong>menikmati liburan.</strong></h2>
+                <h2 class="fw-bold fs-1" style="max-width: 800px; margin: 0 auto;">Liburan berkesan tanpa repot.<br>Kami urus tiket hingga hotel, Anda tinggal bersantai.</h2>
             </div>
 
             <div class="row g-4 mt-4">
@@ -256,25 +247,73 @@
 
             <div class="row g-5 align-items-center text-start mt-4">
                 <div class="col-lg-5">
-                    <div class="service-item border-top">
-                        <h4>01 &nbsp; Paket Tur Domestik</h4>
-                        <i class="fa-solid fa-arrow-right text-muted"></i>
-                    </div>
-                    <div class="service-item">
-                        <h4>02 &nbsp; Paket Tur Internasional</h4>
-                        <i class="fa-solid fa-arrow-right text-muted"></i>
-                    </div>
-                    <div class="service-item">
-                        <h4>03 &nbsp; Tiket Pesawat & Hotel</h4>
-                        <i class="fa-solid fa-arrow-right text-muted"></i>
-                    </div>
-                    <div class="service-item">
-                        <h4>04 &nbsp; Pengurusan Visa</h4>
-                        <i class="fa-solid fa-arrow-right text-muted"></i>
-                    </div>
-                    <div class="service-item">
-                        <h4>05 &nbsp; Itinerary Custom</h4>
-                        <i class="fa-solid fa-arrow-right text-muted"></i>
+                    <div class="accordion service-accordion" id="servicesAccordion">
+                        
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingOne">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    01 &nbsp; Paket Tur Domestik
+                                </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#servicesAccordion">
+                                <div class="accordion-body">
+                                    Jelajahi keindahan Nusantara dari sabang sampai merauke. Kami menyediakan paket perjalanan lengkap termasuk transportasi lokal, pemandu wisata, dan penginapan terbaik di destinasi seperti Bali, Lombok, Labuan Bajo, dan lainnya.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingTwo">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    02 &nbsp; Paket Tur Internasional
+                                </button>
+                            </h2>
+                            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#servicesAccordion">
+                                <div class="accordion-body">
+                                    Wujudkan impian liburan ke luar negeri tanpa repot. Pilihan paket wisata ke Eropa, Asia, Amerika, maupun Australia dengan itinerary yang terencana rapi, memastikan Anda mengunjungi spot-spot ikonik dengan aman dan nyaman.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingThree">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    03 &nbsp; Tiket Pesawat & Hotel
+                                </button>
+                            </h2>
+                            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#servicesAccordion">
+                                <div class="accordion-body">
+                                    Kami membantu Anda mendapatkan harga terbaik untuk tiket penerbangan berbagai maskapai dan reservasi hotel berbintang yang sesuai dengan budget dan preferensi Anda.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingFour">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                    04 &nbsp; Pengurusan Visa
+                                </button>
+                            </h2>
+                            <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#servicesAccordion">
+                                <div class="accordion-body">
+                                    Hilangkan stres mengurus dokumen perjalanan. Tim ahli kami siap membantu proses pengajuan visa wisata Anda, memastikan semua dokumen lengkap untuk probabilitas persetujuan yang tinggi.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingFive">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                    05 &nbsp; Itinerary Custom
+                                </button>
+                            </h2>
+                            <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#servicesAccordion">
+                                <div class="accordion-body">
+                                    Ingin perjalanan yang unik dan spesifik? Layanan itinerary custom kami memungkinkan Anda merancang rute liburan sendiri. Konsultasikan dengan pakar kami untuk menyusun jadwal yang sempurna.
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
                 
